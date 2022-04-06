@@ -17,9 +17,9 @@ namespace IdentityServer
         /// </summary>
         public static class UserApi
         {
-            public static string[] ApiNames = { "net6microservice" };
-            public static string ClientId = "user_clientid";
-            public static string Secret = "user_secret";
+            public static string[] ApiNames => new string[] { "net6microservice" };
+            public static string ClientId => "net6microservice_clientid";
+            public static string Secret => "net6microservice_secret";
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace IdentityServer
         /// </summary>
         public static List<ApiScope> ApiScopes => UserApi.ApiNames.Select(a => new ApiScope(a)).ToList();
         /// <summary>
-        /// 定义ApiResource，这里的资源（Resources）指的就是我们的API
+        /// ApiResource
         /// </summary>
         /// <returns></returns>
         public static List<ApiResource> GetApiResources => UserApi.ApiNames.Select(a => new ApiResource(a, a) { Scopes = { a } }).ToList();

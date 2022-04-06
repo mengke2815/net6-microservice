@@ -36,10 +36,6 @@ builder.Services.AddIdentityServer()
        .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
 #endregion
 
-#region 注入系统缓存
-builder.Services.AddMemoryCache();
-#endregion
-
 #region 初始化日志
 builder.Host.UseSerilog((builderContext, config) =>
 {
