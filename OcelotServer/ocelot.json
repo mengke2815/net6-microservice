@@ -1,0 +1,40 @@
+{
+  "Routes": [
+    {
+      "UseServiceDiscovery": false, // use Consul service discovery
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "ServiceName": "NET6Service",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "UpstreamPathTemplate": "/NET6Service/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5, // 多少个超时请求会触发熔断
+        "DurationOfBreak": 5000, // 熔断的持续时间，单位为毫秒
+        "TimeoutValue": 3000 // 如果下游请求的处理时间超过多少则视如该请求超时,单位为毫秒
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [], //限流白名单，此处填写clientid
+        "EnableRateLimiting": true,
+        "Period": "1s", //用于限流计算: 在Period时间内最多允许Limit次请求(支持的格式有秒:s,分钟:m,小时:h,天:d 等)
+        "Limit": 100, //用于限流计算: 在Period时间内最多允许Limit次请求        
+        "PeriodTimespan": 5 //限流触发后,多少秒后再开启访问
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5001", // 请求 baseurl
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1", // Consul Service IP
+      "Port": 8500, // Consul Service Port
+      "Type": "Consul"
+    },
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "Too many requests!!!!!!!", //自定义限流的文字提示,默认: API calls quota exceeded! maximum admitted {Limit} per {Period}.
+      "HttpStatusCode": 999 //自定义限流的http状态码,默认: 429
+      //"ClientIdHeader": "TestHeader" //自定义用来标识客户端的请求头名称,默认: ClientId
+    }
+  }
+}

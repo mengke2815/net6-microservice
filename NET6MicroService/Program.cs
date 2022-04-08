@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using static CommonLibrary.AppBuilderExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var basePath = AppContext.BaseDirectory;
@@ -96,6 +97,18 @@ app.UseSwaggerUI(a =>
     a.DocExpansion(DocExpansion.None);
     a.DefaultModelsExpandDepth(-1);//不显示Models
 });
+#endregion
+
+#region 注册服务
+var serviceEntity = new ServiceEntity
+{
+    IP = _config["Service:IP"],
+    Port = Convert.ToInt32(_config["Service:Port"]),
+    ServiceName = _config["Service:Name"],
+    ConsulIP = _config["Consul:IP"],
+    ConsulPort = Convert.ToInt32(_config["Consul:Port"])
+};
+app.RegisterConsul(app.Lifetime, serviceEntity);
 #endregion
 
 app.MapControllerRoute(

@@ -1,6 +1,7 @@
 using IdentityServer;
 using Serilog;
 using SqlSugar;
+using static CommonLibrary.AppBuilderExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var basePath = AppContext.BaseDirectory;
@@ -56,6 +57,18 @@ var app = builder.Build();
 
 //添加IdentityServer中间件到Pipeline
 app.UseIdentityServer();
+
+#region 注册服务
+var serviceEntity = new ServiceEntity
+{
+    IP = _config["Service:IP"],
+    Port = Convert.ToInt32(_config["Service:Port"]),
+    ServiceName = _config["Service:Name"],
+    ConsulIP = _config["Consul:IP"],
+    ConsulPort = Convert.ToInt32(_config["Consul:Port"])
+};
+app.RegisterConsul(app.Lifetime, serviceEntity);
+#endregion
 
 // Configure the HTTP request pipeline.
 app.Map("/home", s =>
