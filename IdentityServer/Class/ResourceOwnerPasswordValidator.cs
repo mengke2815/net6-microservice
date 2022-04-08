@@ -1,5 +1,6 @@
 ﻿using IdentityServer4.Models;
 using IdentityServer4.Validation;
+using SqlSugar;
 
 namespace IdentityServer
 {
@@ -8,6 +9,11 @@ namespace IdentityServer
     /// </summary>
     public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
+        public SqlSugarScope _sqlSugar;
+        public ResourceOwnerPasswordValidator(SqlSugarScope sqlSugar)
+        {
+            _sqlSugar = sqlSugar;
+        }
         /// <summary>
         /// 数据库验证
         /// </summary>

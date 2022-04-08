@@ -1,5 +1,4 @@
 ﻿using IdentityServer4.Models;
-using static IdentityServer4.IdentityServerConstants;
 
 namespace IdentityServer
 {
@@ -11,16 +10,16 @@ namespace IdentityServer
         /// <summary>
         /// 过期秒数
         /// </summary>
-        public const int ExpireIn = 36000;
+        public const int ExpireIn = 3600 * 24;
 
         /// <summary>
         /// 用户Api相关
         /// </summary>
         public static class UserApi
         {
-            public static string[] ApiNames => new string[] { "net6microservice", StandardScopes.OfflineAccess };
-            public static string ClientId => "net6microservice_clientid";
-            public static string Secret => "net6microservice_secret";
+            public static string[] ApiNames => new string[] { "net6_microservice" };
+            public static string ClientId => "net6_clientid";
+            public static string Secret => "net6_secret";
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace IdentityServer
                     AllowedGrantTypes =  GrantTypes.ResourceOwnerPassword,//授权方式
                     AllowedScopes= UserApi.ApiNames,//定义这个客户端可以访问的APi资源数组
                     AccessTokenLifetime = ExpireIn,
-                    AllowOfflineAccess = true//如果要获取refresh_tokens ,必须把AllowOfflineAccess设置为true
+                    AllowOfflineAccess = true//如果要获取refresh_tokens，必须把AllowOfflineAccess设置为true
                 }
             };
         }

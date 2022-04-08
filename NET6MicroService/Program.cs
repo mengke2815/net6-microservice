@@ -61,7 +61,7 @@ builder.Services.AddAuthentication("Bearer").AddIdentityServerAuthentication(opt
 {
     options.Authority = "http://localhost:5000";//配置Identityserver的授权地址
     options.RequireHttpsMetadata = false;//不需要https    
-    options.ApiName = "net6microservice";//api的name，需要和config的名称相同
+    options.ApiName = "net6_microservice";//api的name，需要和config的名称相同
 });
 #endregion
 

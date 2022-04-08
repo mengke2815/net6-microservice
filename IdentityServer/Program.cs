@@ -20,7 +20,7 @@ if (_config.GetConnectionString("SugarConnectDBType") == "mysql")
 }
 builder.Services.AddScoped(options =>
 {
-    return new SqlSugarClient(new List<ConnectionConfig>()
+    return new SqlSugarScope(new List<ConnectionConfig>()
     {
         new ConnectionConfig() { ConfigId = 1, ConnectionString = _config.GetConnectionString("SugarConnectString"), DbType = dbtype, IsAutoCloseConnection = true }
     });
@@ -31,8 +31,8 @@ builder.Services.AddScoped(options =>
 builder.Services.AddIdentityServer()
        .AddDeveloperSigningCredential()
        .AddInMemoryApiResources(ApiConfig.GetApiResources)
-       .AddInMemoryApiScopes(ApiConfig.ApiScopes)
        .AddInMemoryClients(ApiConfig.GetClients())
+       .AddInMemoryApiScopes(ApiConfig.ApiScopes)//4.0版本需要添加，不然调用时提示invalid_scope错误
        .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
 #endregion
 
