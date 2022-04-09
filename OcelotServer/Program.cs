@@ -34,7 +34,7 @@ app.Map("/home", s =>
     s.Run(async context =>
     {
         context.Response.ContentType = "text/plain;charset=utf-8";
-        await context.Response.WriteAsync("Ocelot 网关已启动...");
+        await context.Response.WriteAsync("Ocelot 网关服务已启动...");
     });
 });
 

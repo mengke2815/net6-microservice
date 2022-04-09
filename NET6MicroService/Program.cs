@@ -69,6 +69,9 @@ builder.Services.AddAuthentication("Bearer").AddIdentityServerAuthentication(opt
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//×Ô¶¨Òåurl
+builder.WebHost.UseUrls("http://*:7000");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
