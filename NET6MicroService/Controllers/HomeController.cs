@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace NET6MicroService.Controllers
 {
@@ -9,7 +10,7 @@ namespace NET6MicroService.Controllers
     [Authorize]
     [ApiController]
     [Route("home")]
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         /// <summary>
         /// GET
@@ -18,7 +19,8 @@ namespace NET6MicroService.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("这里是NET6MicroService...");
+            var username = User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.Name)?.Value;
+            return Ok($"{username} 已登录：这里是NET6MicroService...");
         }
     }
 }

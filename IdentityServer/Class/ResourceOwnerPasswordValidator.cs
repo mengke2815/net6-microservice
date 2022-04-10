@@ -1,6 +1,7 @@
 ﻿using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using SqlSugar;
+using System.Security.Claims;
 
 namespace IdentityServer
 {
@@ -24,9 +25,13 @@ namespace IdentityServer
             if (context.UserName == "admin" && context.Password == "123")
             {
                 //验证成功
-                //使用subject可用于在资源服务器区分用户身份等等
-                //获取：资源服务器通过User.Claims.Where(l => l.Type == "sub").FirstOrDefault();获取
-                context.Result = new GrantValidationResult(subject: "admin", authenticationMethod: "custom");
+                //自定义用户信息
+                var claims = new Claim[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier, "123456789"),
+                    new Claim(ClaimTypes.Name,"张三")
+                };
+                context.Result = new GrantValidationResult(subject: "admin", authenticationMethod: "custom", claims: claims);
             }
             else
             {

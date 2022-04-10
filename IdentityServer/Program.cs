@@ -1,4 +1,5 @@
 using IdentityServer;
+using IdentityServer.Class;
 using Serilog;
 using SqlSugar;
 using static CommonLibrary.AppBuilderExtensions;
@@ -34,7 +35,8 @@ builder.Services.AddIdentityServer()
        .AddInMemoryApiResources(ApiConfig.GetApiResources)
        .AddInMemoryClients(ApiConfig.GetClients())
        .AddInMemoryApiScopes(ApiConfig.ApiScopes)//4.0版本需要添加，不然调用时提示invalid_scope错误
-       .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
+       .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+       .AddProfileService<ProfileService>();
 #endregion
 
 #region 初始化日志
