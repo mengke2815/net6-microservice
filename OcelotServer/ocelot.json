@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "UseServiceDiscovery": false, // use Consul service discovery
+      "UseServiceDiscovery": true, // use Consul service discovery
       "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
       "ServiceName": "NET6Service",
@@ -13,7 +13,7 @@
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 5, // 多少个超时请求会触发熔断
         "DurationOfBreak": 5000, // 熔断的持续时间，单位为毫秒
-        "TimeoutValue": 3000 // 如果下游请求的处理时间超过多少则视如该请求超时,单位为毫秒
+        "TimeoutValue": 10000 // 如果下游请求的处理时间超过多少则视如该请求超时,单位为毫秒
       },
       "RateLimitOptions": {
         "ClientWhitelist": [], //限流白名单，此处填写clientid
