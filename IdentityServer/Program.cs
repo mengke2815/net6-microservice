@@ -34,7 +34,7 @@ builder.Services.AddIdentityServer()
        .AddDeveloperSigningCredential()
        .AddInMemoryApiResources(ApiConfig.GetApiResources)
        .AddInMemoryClients(ApiConfig.GetClients())
-       .AddInMemoryApiScopes(ApiConfig.ApiScopes)//4.0版本需要添加，不然调用时提示invalid_scope错误
+       .AddInMemoryApiScopes(ApiConfig.ApiScopes) //4.0版本需要添加，不然调用时提示invalid_scope错误
        .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
        .AddProfileService<ProfileService>();
 #endregion

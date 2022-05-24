@@ -1,4 +1,4 @@
-{
+ï»¿{
   "Routes": [
     {
       "UseServiceDiscovery": true, // use Consul service discovery
@@ -11,30 +11,30 @@
       "UpstreamPathTemplate": "/NET6Service/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
       "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 5, // ¶àÉÙ¸ö³¬Ê±ÇëÇó»á´¥·¢ÈÛ¶Ï
-        "DurationOfBreak": 5000, // ÈÛ¶ÏµÄ³ÖĞøÊ±¼ä£¬µ¥Î»ÎªºÁÃë
-        "TimeoutValue": 10000 // Èç¹ûÏÂÓÎÇëÇóµÄ´¦ÀíÊ±¼ä³¬¹ı¶àÉÙÔòÊÓÈç¸ÃÇëÇó³¬Ê±,µ¥Î»ÎªºÁÃë
+        "ExceptionsAllowedBeforeBreaking": 5, // å¤šå°‘ä¸ªè¶…æ—¶è¯·æ±‚ä¼šè§¦å‘ç†”æ–­
+        "DurationOfBreak": 5000, // ç†”æ–­çš„æŒç»­æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’
+        "TimeoutValue": 10000 // å¦‚æœä¸‹æ¸¸è¯·æ±‚çš„å¤„ç†æ—¶é—´è¶…è¿‡å¤šå°‘åˆ™è§†å¦‚è¯¥è¯·æ±‚è¶…æ—¶,å•ä½ä¸ºæ¯«ç§’
       },
       "RateLimitOptions": {
-        "ClientWhitelist": [], //ÏŞÁ÷°×Ãûµ¥£¬´Ë´¦ÌîĞ´clientid
+        "ClientWhitelist": [], //é™æµç™½åå•ï¼Œæ­¤å¤„å¡«å†™clientid
         "EnableRateLimiting": true,
-        "Period": "1s", //ÓÃÓÚÏŞÁ÷¼ÆËã: ÔÚPeriodÊ±¼äÄÚ×î¶àÔÊĞíLimit´ÎÇëÇó(Ö§³ÖµÄ¸ñÊ½ÓĞÃë:s,·ÖÖÓ:m,Ğ¡Ê±:h,Ìì:d µÈ)
-        "Limit": 100, //ÓÃÓÚÏŞÁ÷¼ÆËã: ÔÚPeriodÊ±¼äÄÚ×î¶àÔÊĞíLimit´ÎÇëÇó        
-        "PeriodTimespan": 5 //ÏŞÁ÷´¥·¢ºó,¶àÉÙÃëºóÔÙ¿ªÆô·ÃÎÊ
+        "Period": "1s", //ç”¨äºé™æµè®¡ç®—: åœ¨Periodæ—¶é—´å†…æœ€å¤šå…è®¸Limitæ¬¡è¯·æ±‚(æ”¯æŒçš„æ ¼å¼æœ‰ç§’:s,åˆ†é’Ÿ:m,å°æ—¶:h,å¤©:d ç­‰)
+        "Limit": 100, //ç”¨äºé™æµè®¡ç®—: åœ¨Periodæ—¶é—´å†…æœ€å¤šå…è®¸Limitæ¬¡è¯·æ±‚        
+        "PeriodTimespan": 5 //é™æµè§¦å‘å,å¤šå°‘ç§’åå†å¼€å¯è®¿é—®
       }
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5001", // ÇëÇó baseurl
+    "BaseUrl": "http://localhost:5001", // è¯·æ±‚ baseurl
     "ServiceDiscoveryProvider": {
       "Host": "127.0.0.1", // Consul Service IP
       "Port": 8500, // Consul Service Port
       "Type": "Consul"
     },
     "RateLimitOptions": {
-      "QuotaExceededMessage": "Too many requests!!!!!!!", //×Ô¶¨ÒåÏŞÁ÷µÄÎÄ×ÖÌáÊ¾,Ä¬ÈÏ: API calls quota exceeded! maximum admitted {Limit} per {Period}.
-      "HttpStatusCode": 999 //×Ô¶¨ÒåÏŞÁ÷µÄhttp×´Ì¬Âë,Ä¬ÈÏ: 429
-      //"ClientIdHeader": "TestHeader" //×Ô¶¨ÒåÓÃÀ´±êÊ¶¿Í»§¶ËµÄÇëÇóÍ·Ãû³Æ,Ä¬ÈÏ: ClientId
+      "QuotaExceededMessage": "Too many requests!!!!!!!", //è‡ªå®šä¹‰é™æµçš„æ–‡å­—æç¤º,é»˜è®¤: API calls quota exceeded! maximum admitted {Limit} per {Period}.
+      "HttpStatusCode": 999 //è‡ªå®šä¹‰é™æµçš„httpçŠ¶æ€ç ,é»˜è®¤: 429
+      //"ClientIdHeader": "TestHeader" //è‡ªå®šä¹‰ç”¨æ¥æ ‡è¯†å®¢æˆ·ç«¯çš„è¯·æ±‚å¤´åç§°,é»˜è®¤: ClientId
     }
   }
 }

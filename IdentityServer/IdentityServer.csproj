@@ -16,8 +16,9 @@
   <ItemGroup>
     <PackageReference Include="IdentityServer4" Version="4.1.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="SqlSugarCore" Version="5.0.6.4" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.8.3" />
   </ItemGroup>
 
   <ItemGroup>
