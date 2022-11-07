@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET6MicroService", "NET6Mic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{4195B6CC-7F6F-4CC1-8064-EAF1B1C5F29F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotServer", "OcelotServer\OcelotServer.csproj", "{9336DE69-34BE-420C-8435-486B74F31C9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotServer", "OcelotServer\OcelotServer.csproj", "{9336DE69-34BE-420C-8435-486B74F31C9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{BF3DD4F8-7A69-4693-B721-D5226641EE5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{BF3DD4F8-7A69-4693-B721-D5226641EE5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
