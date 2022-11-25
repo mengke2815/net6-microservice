@@ -4,11 +4,11 @@
       "UseServiceDiscovery": true, // use Consul service discovery
       "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
-      "ServiceName": "NET6Service",
+      "ServiceName": "NET7Service",
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "UpstreamPathTemplate": "/NET6Service/{url}",
+      "UpstreamPathTemplate": "/NET7Service/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
       "QoSOptions": {
         "ExceptionsAllowedBeforeBreaking": 5, // 多少个超时请求会触发熔断

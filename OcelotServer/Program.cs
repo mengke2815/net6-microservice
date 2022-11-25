@@ -11,7 +11,7 @@ builder.Services.AddAuthentication("Bearer")
                 {
                     options.RequireHttpsMetadata = false;
                     options.Authority = $"http://localhost:5000";
-                    options.ApiName = "net6_microservice";
+                    options.ApiName = "net7_microservice";
                     options.SupportedTokens = SupportedTokens.Both;
                 });
 

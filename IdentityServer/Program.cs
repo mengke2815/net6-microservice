@@ -1,9 +1,3 @@
-using IdentityServer;
-using IdentityServer.Class;
-using Serilog;
-using SqlSugar;
-using static CommonLibrary.AppBuilderExtensions;
-
 var builder = WebApplication.CreateBuilder(args);
 var basePath = AppContext.BaseDirectory;
 

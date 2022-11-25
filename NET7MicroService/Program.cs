@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen(a =>
     {
         a.SwaggerDoc(item.Item1, new OpenApiInfo { Version = item.Item1, Title = item.Item2, Description = "" });
     }
-    a.IncludeXmlComments(Path.Combine(basePath, "NET6MicroService.xml"), true);
+    a.IncludeXmlComments(Path.Combine(basePath, "NET7MicroService.xml"), true);
     a.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "Value: Bearer {token}",
@@ -62,7 +62,7 @@ builder.Services.AddAuthentication("Bearer").AddIdentityServerAuthentication(opt
 {
     options.Authority = "http://localhost:5000";//配置Identityserver的授权地址
     options.RequireHttpsMetadata = false;//不需要https    
-    options.ApiName = "net6_microservice";//api的name，需要和config的名称相同
+    options.ApiName = "net7_microservice";//api的name，需要和config的名称相同
 });
 #endregion
 
