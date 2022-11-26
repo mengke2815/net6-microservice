@@ -1,7 +1,7 @@
 ﻿namespace IdentityServer.Class;
 
 /// <summary>
-/// 
+/// 用于实现设置自定义Claims
 /// </summary>
 public class ProfileService : IProfileService
 {

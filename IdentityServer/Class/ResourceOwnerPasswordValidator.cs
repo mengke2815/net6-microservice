@@ -26,7 +26,7 @@ public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
                 new Claim(ClaimTypes.NameIdentifier, "123456789"),
                 new Claim(ClaimTypes.Name,"张三")
             };
-            context.Result = new GrantValidationResult(subject: "admin", authenticationMethod: "custom", claims: claims);
+            context.Result = new GrantValidationResult(subject: "123456789", authenticationMethod: "custom", claims: claims);
         }
         else
         {
