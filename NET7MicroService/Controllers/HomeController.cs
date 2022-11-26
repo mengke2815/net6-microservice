@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace NET7MicroService.Controllers;
@@ -6,7 +7,7 @@ namespace NET7MicroService.Controllers;
 /// <summary>
 /// 微服务控制器
 /// </summary>
-//[Authorize]
+[Authorize]
 [ApiController]
 [Route("home")]
 public class HomeController : ControllerBase
