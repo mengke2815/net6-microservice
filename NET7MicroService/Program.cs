@@ -1,3 +1,4 @@
+using CommonLibrary;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using static CommonLibrary.AppBuilderExtensions;
@@ -7,9 +8,10 @@ var basePath = AppContext.BaseDirectory;
 
 #region 引入配置文件
 var _config = new ConfigurationBuilder()
-         .SetBasePath(basePath)
-         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-         .Build();
+                 .SetBasePath(basePath)
+                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                 .Build();
+builder.Services.AddSingleton(new AppSettingsHelper(_config));
 #endregion
 
 #region 接口分组
@@ -105,11 +107,11 @@ app.UseSwaggerUI(a =>
 #region 注册服务
 var serviceEntity = new ServiceEntity
 {
-    IP = _config["Service:IP"],
-    Port = Convert.ToInt32(_config["Service:Port"]),
-    ServiceName = _config["Service:Name"],
-    ConsulIP = _config["Consul:IP"],
-    ConsulPort = Convert.ToInt32(_config["Consul:Port"])
+    IP = AppSettingsHelper.Get("Service:IP"),
+    Port = Convert.ToInt32(AppSettingsHelper.Get("Service:Port")),
+    ServiceName = AppSettingsHelper.Get("Service:Name"),
+    ConsulIP = AppSettingsHelper.Get("Consul:IP"),
+    ConsulPort = Convert.ToInt32(AppSettingsHelper.Get("Consul:Port"))
 };
 app.RegisterConsul(app.Lifetime, serviceEntity);
 #endregion
