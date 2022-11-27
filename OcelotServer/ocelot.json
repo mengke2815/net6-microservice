@@ -33,7 +33,7 @@
     },
     "RateLimitOptions": {
       "QuotaExceededMessage": "Too many requests!!!!!!!", //自定义限流的文字提示,默认: API calls quota exceeded! maximum admitted {Limit} per {Period}.
-      "HttpStatusCode": 999 //自定义限流的http状态码,默认: 429
+      "HttpStatusCode": 429 //自定义限流的http状态码,默认: 429
       //"ClientIdHeader": "TestHeader" //自定义用来标识客户端的请求头名称,默认: ClientId
     }
   }
