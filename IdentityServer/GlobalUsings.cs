@@ -1,4 +1,5 @@
-﻿global using IdentityServer.Class;
+﻿global using CommonLibrary;
+global using IdentityServer.Class;
 global using IdentityServer4.Models;
 global using IdentityServer4.Services;
 global using IdentityServer4.Validation;

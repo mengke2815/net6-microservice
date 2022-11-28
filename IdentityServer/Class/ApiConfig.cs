@@ -49,4 +49,17 @@ public class ApiConfig
             }
         };
     }
+
+    /// <summary>
+    /// IdentityResource
+    /// </summary>
+    /// <returns></returns>
+    public static IEnumerable<IdentityResource> GetIdentityResources()
+    {
+        return new IdentityResource[]
+        {
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile()
+        };
+    }
 }

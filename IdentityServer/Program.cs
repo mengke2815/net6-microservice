@@ -1,5 +1,3 @@
-using CommonLibrary;
-
 var builder = WebApplication.CreateBuilder(args);
 var basePath = AppContext.BaseDirectory;
 
@@ -32,6 +30,7 @@ builder.Services.AddIdentityServer()
        .AddInMemoryApiResources(ApiConfig.GetApiResources)
        .AddInMemoryApiScopes(ApiConfig.ApiScopes) //4.0版本需要添加，不然调用时提示invalid_scope错误
        .AddInMemoryClients(ApiConfig.GetClients())
+       .AddInMemoryIdentityResources(ApiConfig.GetIdentityResources())//添加对OpenID Connect的支持
        .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
        .AddProfileService<ProfileService>();
 #endregion
@@ -58,15 +57,14 @@ var app = builder.Build();
 app.UseIdentityServer();
 
 #region 注册服务
-var serviceEntity = new ServiceEntity
+app.RegisterConsul(app.Lifetime, new ServiceEntity
 {
     IP = AppSettingsHelper.Get("Service:IP"),
     Port = Convert.ToInt32(AppSettingsHelper.Get("Service:Port")),
     ServiceName = AppSettingsHelper.Get("Service:Name"),
     ConsulIP = AppSettingsHelper.Get("Consul:IP"),
     ConsulPort = Convert.ToInt32(AppSettingsHelper.Get("Consul:Port"))
-};
-app.RegisterConsul(app.Lifetime, serviceEntity);
+});
 #endregion
 
 // Configure the HTTP request pipeline.

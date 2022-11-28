@@ -20,8 +20,8 @@ builder.Services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.RequireHttpsMetadata = false;
-                    options.Authority = $"http://localhost:5000";
-                    options.ApiName = AppSettingsHelper.Get("ApiName");
+                    options.Authority = AppSettingsHelper.Get("IdentityServer:Authority");
+                    options.ApiName = AppSettingsHelper.Get("IdentityServer:ApiName");
                     options.SupportedTokens = SupportedTokens.Both;
                 });
 

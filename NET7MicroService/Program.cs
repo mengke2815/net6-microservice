@@ -28,11 +28,12 @@ builder.Services.AddSwaggerGen(a =>
     a.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "Api"
+        Title = "Api",
+        Description = "Api接口文档"
     });
     foreach (var item in groups)
     {
-        a.SwaggerDoc(item.Item1, new OpenApiInfo { Version = item.Item1, Title = item.Item2, Description = "" });
+        a.SwaggerDoc(item.Item1, new OpenApiInfo { Version = item.Item1, Title = item.Item2, Description = $"{item.Item2}接口文档" });
     }
     a.IncludeXmlComments(Path.Combine(basePath, "NET7MicroService.xml"), true);
     a.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -52,9 +53,8 @@ builder.Services.AddSwaggerGen(a =>
           {
             Type = ReferenceType.SecurityScheme,
             Id = "Bearer"
-          },Scheme = "oauth2",Name = "Bearer",In = ParameterLocation.Header,
-        },new List<string>()
-      }
+          }, Scheme = "oauth2", Name = "Bearer", In = ParameterLocation.Header }, new List<string>()
+        }
     });
 });
 #endregion
@@ -62,9 +62,9 @@ builder.Services.AddSwaggerGen(a =>
 #region 添加身份认证
 builder.Services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
 {
-    options.Authority = "http://localhost:5000";//配置Identityserver的授权地址
+    options.Authority = AppSettingsHelper.Get("IdentityServer:Authority");//配置Identityserver的授权地址
     options.RequireHttpsMetadata = false;//不需要https    
-    options.ApiName = "net7_microservice";//api的name，需要和config的名称相同
+    options.ApiName = AppSettingsHelper.Get("IdentityServer:ApiName");//api的name，需要和config的名称相同
 });
 #endregion
 
@@ -105,15 +105,14 @@ app.UseSwaggerUI(a =>
 #endregion
 
 #region 注册服务
-var serviceEntity = new ServiceEntity
+app.RegisterConsul(app.Lifetime, new ServiceEntity
 {
     IP = AppSettingsHelper.Get("Service:IP"),
     Port = Convert.ToInt32(AppSettingsHelper.Get("Service:Port")),
     ServiceName = AppSettingsHelper.Get("Service:Name"),
     ConsulIP = AppSettingsHelper.Get("Consul:IP"),
     ConsulPort = Convert.ToInt32(AppSettingsHelper.Get("Consul:Port"))
-};
-app.RegisterConsul(app.Lifetime, serviceEntity);
+});
 #endregion
 
 app.MapControllerRoute(
