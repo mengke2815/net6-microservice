@@ -90,10 +90,10 @@ app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI(a =>
 {
-    a.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
+    a.SwaggerEndpoint($"/{AppSettingsHelper.Get("Service:Name")}/swagger/v1/swagger.json", "V1 Docs");
     foreach (var item in groups)
     {
-        a.SwaggerEndpoint($"/swagger/{item.Item1}/swagger.json", item.Item2);
+        a.SwaggerEndpoint($"/{AppSettingsHelper.Get("Service:Name")}/swagger/{item.Item1}/swagger.json", item.Item2);
     }
     a.RoutePrefix = string.Empty;
     a.DocExpansion(DocExpansion.None);
