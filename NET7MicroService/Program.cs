@@ -95,7 +95,7 @@ app.UseSwaggerUI(a =>
     {
         a.SwaggerEndpoint($"/swagger/{item.Item1}/swagger.json", item.Item2);
     }
-    a.RoutePrefix = AppSettingsHelper.Get("Service:Name");
+    a.RoutePrefix = string.Empty;
     a.DocExpansion(DocExpansion.None);
     a.DefaultModelsExpandDepth(-1);//≤ªœ‘ æModels
 });
