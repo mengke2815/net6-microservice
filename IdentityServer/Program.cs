@@ -49,8 +49,6 @@ builder.Host.UseSerilog((builderContext, config) =>
 // Add services to the container.
 builder.Services.AddControllers();
 
-//自定义url
-builder.WebHost.UseUrls("http://*:5000");
 var app = builder.Build();
 
 //添加IdentityServer中间件到Pipeline

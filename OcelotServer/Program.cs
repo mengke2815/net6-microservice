@@ -33,9 +33,6 @@ builder.Services.AddOcelot(new ConfigurationBuilder()
 // Add services to the container.
 builder.Services.AddControllers();
 
-//×Ô¶¨Òåurl
-builder.WebHost.UseUrls("http://*:5001");
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
