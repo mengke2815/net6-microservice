@@ -28,8 +28,8 @@ builder.Services.AddScoped(options =>
 builder.Services.AddIdentityServer()
        .AddDeveloperSigningCredential()
        .AddInMemoryApiResources(ApiConfig.GetApiResources)
-       .AddInMemoryApiScopes(ApiConfig.ApiScopes) //4.0版本需要添加，不然调用时提示invalid_scope错误
        .AddInMemoryClients(ApiConfig.GetClients())
+       .AddInMemoryApiScopes(ApiConfig.ApiScopes)//4.0版本需要添加，不然调用时提示invalid_scope错误
        .AddInMemoryIdentityResources(ApiConfig.GetIdentityResources())//添加对OpenID Connect的支持
        .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
        .AddProfileService<ProfileService>();
