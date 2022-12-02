@@ -41,8 +41,6 @@ services:
       - 8503:80
     depends_on:
       - consul
-      - ocelot
-      - identityservice
     networks:
       - appnetwork
 

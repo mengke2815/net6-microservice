@@ -25,9 +25,9 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://192.168.0.1:8502", // 请求 baseurl
+    "BaseUrl": "http://localhost:8502", // 请求 baseurl
     "ServiceDiscoveryProvider": {
-      "Host": "192.168.0.1", // Consul Service IP
+      "Host": "localhost", // Consul Service IP
       "Port": 8500, // Consul Service Port
       "Type": "Consul"
     },
