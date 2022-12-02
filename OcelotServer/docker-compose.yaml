@@ -1,0 +1,55 @@
+﻿version: '3.0'
+
+services:
+  consul:
+    image: consul
+    container_name: consul
+    restart: always
+    privileged: true
+    ports:
+      - 8500:8500
+    command: agent -server -bootstrap -ui -node=default -client='0.0.0.0'
+    networks:
+      - appnetwork
+  ocelot:
+    build: /app/project_code/ocelot
+    image: ocelot
+    container_name: ocelot
+    restart: always
+    privileged: true
+    ports:
+      - 8501:80
+    depends_on:
+      - consul
+    networks:
+      - appnetwork
+  identityservice:
+    build: /app/project_code/identityservice
+    image: identityservice
+    container_name: identityservice
+    restart: always
+    ports:
+      - 8502:80
+    depends_on:
+      - consul
+      - ocelot
+    networks:
+      - appnetwork
+  microservice:
+    build: /app/project_code/microservice
+    image: microservice
+    container_name: microservice
+    restart: always
+    ports:
+      - 8503:80
+    depends_on:
+      - consul
+      - ocelot
+      - identityservice
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork: #192.168.0.0/24 192.168.0.1 192.168.0.0/24
+    external:
+      name: app_default

@@ -10,18 +10,18 @@ builder.Services.AddSingleton(new AppSettingsHelper(_config));
 #endregion
 
 #region 注入数据库
-var dbtype = DbType.SqlServer;
-if (AppSettingsHelper.Get("SugarConnectDBType", true) == "mysql")
-{
-    dbtype = DbType.MySql;
-}
-builder.Services.AddScoped(options =>
-{
-    return new SqlSugarScope(new List<ConnectionConfig>()
-    {
-        new ConnectionConfig() { ConfigId = 1, ConnectionString = AppSettingsHelper.Get("SugarConnectString", true), DbType = dbtype, IsAutoCloseConnection = true }
-    });
-});
+//var dbtype = DbType.SqlServer;
+//if (AppSettingsHelper.Get("SugarConnectDBType", true) == "mysql")
+//{
+//    dbtype = DbType.MySql;
+//}
+//builder.Services.AddScoped(options =>
+//{
+//    return new SqlSugarScope(new List<ConnectionConfig>()
+//    {
+//        new ConnectionConfig() { ConfigId = 1, ConnectionString = AppSettingsHelper.Get("SugarConnectString", true), DbType = dbtype, IsAutoCloseConnection = true }
+//    });
+//});
 #endregion
 
 #region 注入IdentityServer
