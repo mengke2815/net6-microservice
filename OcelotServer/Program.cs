@@ -16,14 +16,13 @@ var _config = new ConfigurationBuilder()
 builder.Services.AddSingleton(new AppSettingsHelper(_config));
 #endregion
 
-builder.Services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.Authority = AppSettingsHelper.Get("IdentityServer:Authority");
-                    options.ApiName = AppSettingsHelper.Get("IdentityServer:ApiName");
-                    options.SupportedTokens = SupportedTokens.Both;
-                });
+builder.Services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.Authority = AppSettingsHelper.Get("IdentityServer:Authority");
+    options.ApiName = AppSettingsHelper.Get("IdentityServer:ApiName");
+    options.SupportedTokens = SupportedTokens.Both;
+});
 
 builder.Services.AddOcelot(new ConfigurationBuilder()
                 .AddJsonFile("ocelot.json").Build())

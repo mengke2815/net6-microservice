@@ -11,6 +11,17 @@ services:
     command: agent -server -bootstrap -ui -node=default -client='0.0.0.0'
     networks:
       - appnetwork
+  identityservice:
+    build: /app/project_code/identityservice
+    image: identityservice
+    container_name: identityservice
+    restart: always
+    ports:
+      - 8501:80
+    depends_on:
+      - consul
+    networks:
+      - appnetwork
   ocelot:
     build: /app/project_code/ocelot
     image: ocelot
@@ -18,21 +29,7 @@ services:
     restart: always
     privileged: true
     ports:
-      - 8501:80
-    depends_on:
-      - consul
-    networks:
-      - appnetwork
-  identityservice:
-    build: /app/project_code/identityservice
-    image: identityservice
-    container_name: identityservice
-    restart: always
-    ports:
       - 8502:80
-    depends_on:
-      - consul
-      - ocelot
     networks:
       - appnetwork
   microservice:

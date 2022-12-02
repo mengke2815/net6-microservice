@@ -1,4 +1,5 @@
 using CommonLibrary;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using static CommonLibrary.AppBuilderExtensions;
@@ -62,9 +63,10 @@ builder.Services.AddSwaggerGen(a =>
 #region 添加身份认证
 builder.Services.AddAuthentication("Bearer").AddIdentityServerAuthentication(options =>
 {
-    options.Authority = AppSettingsHelper.Get("IdentityServer:Authority");//配置Identityserver的授权地址
-    options.RequireHttpsMetadata = false;//不需要https    
-    options.ApiName = AppSettingsHelper.Get("IdentityServer:ApiName");//api的name，需要和config的名称相同
+    options.RequireHttpsMetadata = false;
+    options.Authority = AppSettingsHelper.Get("IdentityServer:Authority");
+    options.ApiName = AppSettingsHelper.Get("IdentityServer:ApiName");
+    options.SupportedTokens = SupportedTokens.Both;
 });
 #endregion
 
